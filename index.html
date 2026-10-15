@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thử ghi âm khảo sát Hóa học</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f3f7fc;color:#172b4d;margin:0;padding:24px}main{max-width:600px;margin:30px auto;background:white;padding:28px;border-radius:16px;box-shadow:0 4px 22px #18315318}h1{font-size:24px}p{line-height:1.6}button{font-size:16px;border:0;border-radius:9px;padding:12px 18px;margin:6px 8px 6px 0;background:#1463bd;color:white;cursor:pointer}button:disabled{background:#a8b1bf;cursor:not-allowed}#stop{background:#b43535}audio{width:100%;margin-top:14px}#status{padding:12px;border-radius:8px;background:#eef4fd;white-space:pre-wrap}small{color:#526276}
+</style>
+</head>
+<body><main>
+<h1>🎙️ Kiểm tra chức năng ghi âm</h1>
+<p>Trang này chỉ dùng để thử micro trước khi đưa chức năng ghi âm vào bài khảo sát Hóa học. <strong>Không gửi hoặc lưu âm thanh lên máy chủ.</strong></p>
+<button id="start">Bắt đầu ghi âm</button><button id="stop" disabled>Dừng ghi âm</button>
+<p id="status" role="status">Sẵn sàng. Hãy nhấn “Bắt đầu ghi âm”.</p>
+<audio id="playback" controls hidden></audio>
+<p><small>Hãy mở website bằng HTTPS và cho phép sử dụng micro khi trình duyệt hỏi.</small></p>
+</main>
+<script>
+const start=document.getElementById('start'),stop=document.getElementById('stop'),status=document.getElementById('status'),player=document.getElementById('playback');
+let recorder,stream,chunks=[],audioUrl;
+start.onclick=async()=>{
+ try{
+  if(!navigator.mediaDevices?.getUserMedia)throw new Error('Trình duyệt hoặc kết nối hiện tại không hỗ trợ truy cập micro.');
+  stream=await navigator.mediaDevices.getUserMedia({audio:true});
+  if(!window.MediaRecorder)throw new Error('Trình duyệt không hỗ trợ MediaRecorder.');
+  chunks=[];
+  recorder=new MediaRecorder(stream);
+  recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+  recorder.onstop=()=>{
+   if(audioUrl)URL.revokeObjectURL(audioUrl);
+   audioUrl=URL.createObjectURL(new Blob(chunks,{type:recorder.mimeType||'audio/webm'}));
+   player.src=audioUrl;player.hidden=false;
+   stream.getTracks().forEach(t=>t.stop());
+   status.textContent='Đã ghi âm xong. Nhấn nút phát để nghe lại.';
+   start.disabled=false;stop.disabled=true;
+  };
+  recorder.start();start.disabled=true;stop.disabled=false;player.hidden=true;
+  status.textContent='Đang ghi âm… Hãy đọc thử tên một nguyên tố hóa học rồi nhấn “Dừng ghi âm”.';
+ }catch(err){
+  if(stream)stream.getTracks().forEach(t=>t.stop());
+  status.textContent='Không thể ghi âm: '+err.message;
+  start.disabled=false;stop.disabled=true;
+ }
+};
+stop.onclick=()=>{if(recorder?.state==='recording')recorder.stop()};
+</script>
+</body></html>
