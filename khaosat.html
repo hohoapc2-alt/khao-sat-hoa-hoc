@@ -2,7 +2,7 @@
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Khảo sát danh pháp Hóa học - thử nghiệm</title>
 <style>
 :root{--blue:#155eef;--navy:#172554;--line:#e2e8f0}*{box-sizing:border-box}body{margin:0;background:#f3f6fc;color:#172033;font-family:Arial,sans-serif;line-height:1.55}.wrap{max-width:850px;margin:auto;padding:20px 15px 65px}.hero{background:linear-gradient(125deg,#172554,#2563eb);color:white;border-radius:22px;padding:27px;box-shadow:0 12px 32px #17255426}.tag{font-size:12px;letter-spacing:1px;font-weight:bold}.hero h1{font-size:26px;margin:10px 0}.hero p{margin:0}.card{background:white;border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:16px}.card h2{font-size:20px;color:var(--navy);margin:0 0 15px}.field{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field label{font-weight:600;font-size:13px}input[type=text],select{width:100%;border:1px solid #cbd5e1;border-radius:9px;padding:12px;margin-top:5px;font-size:15px}.section-title{color:#1e3a8a;margin:25px 0 10px;font-size:19px}.question{padding:19px 20px;margin-top:12px}.qhead{font-weight:bold;margin-bottom:12px}.qnum{color:#2563eb}.options{display:grid;gap:8px}.opt{border:1px solid #dbe3ee;border-radius:10px;padding:10px 12px;cursor:pointer;display:flex;gap:10px}.opt:has(input:checked){border-color:#2563eb;background:#eff6ff}.btn{border:0;border-radius:10px;background:var(--blue);color:white;font-weight:bold;padding:11px 17px;cursor:pointer}.btn:disabled{opacity:.45;cursor:not-allowed}.play{background:#0f766e;margin-bottom:10px}.rec{background:#dc2626}.stop{background:#475569}.record-actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.status,.tiny{font-size:13px;color:#64748b}.question audio{width:100%;margin-top:10px}.hidden{display:none!important}.scale-legend{background:#f1f5f9;border-radius:10px;padding:12px 16px;margin:12px 0}.survey-item{border-bottom:1px solid var(--line);padding:12px 0}.scale{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}.scale label{white-space:nowrap}.notice{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:12px;margin-top:14px;color:#9a3412}.alert{padding:13px;border-radius:10px;margin-top:14px;background:#fef3c7;color:#92400e;display:none}.submit{width:100%;font-size:17px;padding:16px}.foot{font-size:12px;color:#64748b;margin-top:15px}@media(max-width:580px){.field{grid-template-columns:1fr}.hero h1{font-size:22px}.card{padding:16px}}
-</style></head><body><main class="wrap"><div class="hero"><div class="tag">HỒ THỊ HOA - TRƯỜNG THPT SỐ 2 PHÙ CÁT</div><h1 id="title">Đang tải câu hỏi...</h1><p>10 câu • 10 điểm • 15–20 phút • Nhìn – Nghe – Phát âm</p></div><div id="error" class="alert"></div><div id="formArea"><div class="card"><h2>Thông tin học sinh (chỉ thử giao diện)</h2><div class="field"><label>Mã học sinh<input type="text" id="studentId" autocomplete="off"></label><label>Họ và tên<input type="text" id="name"></label><label>Lớp<input type="text" id="className"></label><label>Nhóm khảo sát<select id="group"><option value="">-- Chọn nhóm --</option><option value="TN">Lớp thực nghiệm</option><option value="DC">Lớp đối chứng</option></select></label></div></div><div id="questions"></div><div id="survey" class="card hidden"><h2>Khảo sát mức độ hứng thú (không tính điểm)</h2><p class="tiny">Chỉ dành cho nhóm thực nghiệm sau thực nghiệm.</p><div class="scale-legend">1 – Hoàn toàn không đồng ý · 2 – Không đồng ý · 3 – Phân vân · 4 – Đồng ý · 5 – Hoàn toàn đồng ý</div><div id="surveyQuestions"></div></div><div class="card"><button class="btn submit" disabled title="Chưa kết nối chức năng nộp bài">NỘP BÀI (CHƯA KÍCH HOẠT)</button><p class="tiny">Chức năng nộp bài sẽ được bổ sung sau khi kiểm tra giao diện và ghi âm thành công.</p></div></div><div class="foot">Dữ liệu thử nghiệm chưa được gửi đến Google Sheets hoặc Google Drive.</div></main>
+</style></head><body><main class="wrap"><div class="hero"><div class="tag">HỒ THỊ HOA - TRƯỜNG THPT SỐ 2 PHÙ CÁT</div><h1 id="title">Đang tải câu hỏi...</h1><p>10 câu • 10 điểm • 15–20 phút • Nhìn – Nghe – Phát âm</p></div><div class="notice"><b>BẢN THỬ NGHIỆM:</b> Đã hỗ trợ lấy câu hỏi và ghi âm. <b>Chưa có chức năng nộp bài lên Google Sheets/Drive.</b> Không dùng để khảo sát chính thức.</div><div id="error" class="alert"></div><div id="formArea"><div class="card"><h2>Thông tin học sinh (chỉ thử giao diện)</h2><div class="field"><label>Mã học sinh<input type="text" id="studentId" autocomplete="off"></label><label>Họ và tên<input type="text" id="name"></label><label>Lớp<input type="text" id="className"></label><label>Nhóm khảo sát<select id="group"><option value="">-- Chọn nhóm --</option><option value="TN">Lớp thực nghiệm</option><option value="DC">Lớp đối chứng</option></select></label></div></div><div id="questions"></div><div id="survey" class="card hidden"><h2>Khảo sát mức độ hứng thú (không tính điểm)</h2><p class="tiny">Chỉ dành cho nhóm thực nghiệm sau thực nghiệm.</p><div class="scale-legend">1 – Hoàn toàn không đồng ý · 2 – Không đồng ý · 3 – Phân vân · 4 – Đồng ý · 5 – Hoàn toàn đồng ý</div><div id="surveyQuestions"></div></div><div class="card"><button class="btn submit" disabled title="Chưa kết nối chức năng nộp bài">NỘP BÀI (CHƯA KÍCH HOẠT)</button><p class="tiny">Chức năng nộp bài sẽ được bổ sung sau khi kiểm tra giao diện và ghi âm thành công.</p></div></div><div class="foot">Dữ liệu thử nghiệm chưa được gửi đến Google Sheets hoặc Google Drive.</div></main>
 <script>
 // THAY địa chỉ bên dưới bằng URL Cloudflare Worker của bạn (không thêm /questions).
 const WORKER_URL = 'https://thinglink-khaosat-api.hohoapc2.workers.dev/';
@@ -18,4 +18,62 @@ function playAudio(n){const q=QUESTIONS.find(x=>x.n===n);if(!q)return;if(q.audio
 async function startRec(n){try{if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder)throw Error('Trình duyệt không hỗ trợ ghi âm.');if(Object.values(recorders).some(r=>r.state==='recording'))throw Error('Vui lòng dừng bản ghi hiện tại trước.');const stream=await navigator.mediaDevices.getUserMedia({audio:true});const mime=['audio/webm;codecs=opus','audio/mp4','audio/webm'].find(x=>MediaRecorder.isTypeSupported(x))||'';const rec=new MediaRecorder(stream,mime?{mimeType:mime}:undefined);const chunks=[];rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};rec.onstop=()=>{const blob=new Blob(chunks,{type:rec.mimeType||'audio/webm'});recordings[n]=blob;const a=$('preview'+n);if(a.dataset.url)URL.revokeObjectURL(a.dataset.url);a.dataset.url=URL.createObjectURL(blob);a.src=a.dataset.url;a.classList.remove('hidden');$('status'+n).textContent='Đã ghi âm ('+Math.round(blob.size/1024)+' KB)';stream.getTracks().forEach(t=>t.stop());};recorders[n]=rec;rec.start();$('start'+n).disabled=true;$('stop'+n).disabled=false;$('status'+n).textContent='Đang ghi âm…';setTimeout(()=>{if(rec.state==='recording')stopRec(n)},15000);}catch(e){notify('Không thể ghi âm: '+(e.message||e));}}
 function stopRec(n){const rec=recorders[n];if(rec&&rec.state==='recording')rec.stop();$('start'+n).disabled=false;$('stop'+n).disabled=true;}
 init();
+</script><div style="max-width:850px;margin:20px auto;padding:15px;
+background:#e0f2fe;border:2px solid #0284c7;
+border-radius:12px;text-align:center;">
+
+  <h3>KIỂM TRA KẾT NỐI NỘP BÀI</h3>
+
+  <button type="button"
+    onclick="kiemTraNopBai()"
+    style="padding:12px 20px;background:#0284c7;
+    color:white;border:0;border-radius:8px;
+    cursor:pointer;font-weight:bold;">
+    KIỂM TRA GỬI DỮ LIỆU
+  </button>
+
+  <p id="ketQuaKiemTra"
+     style="font-weight:bold;margin-top:12px;">
+  </p>
+</div>
+
+<script>
+async function kiemTraNopBai() {
+  const el = document.getElementById('ketQuaKiemTra');
+
+  el.textContent = 'Đang gửi dữ liệu thử nghiệm...';
+
+  try {
+    const response = await fetch(
+      WORKER_URL.replace(/\/$/, '') + '/test-submit',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          action: 'testSubmit'
+        })
+      }
+    );
+
+    const result = await response.json();
+
+    if (response.ok && result.success === true) {
+      el.style.color = 'green';
+      el.textContent =
+        'THÀNH CÔNG! ' + result.message;
+    } else {
+      el.style.color = 'red';
+      el.textContent =
+        'CHƯA THÀNH CÔNG: ' +
+        (result.message || 'Lỗi không xác định');
+    }
+
+  } catch (error) {
+    el.style.color = 'red';
+    el.textContent =
+      'LỖI KẾT NỐI: ' + error.message;
+  }
+}
 </script></body></html>
